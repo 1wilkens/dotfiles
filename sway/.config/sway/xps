@@ -1,13 +1,13 @@
 # WORKSPACES
 set $w1 "1: zsh"
 set $w2 "2: web"
-set $w3 "3: dev"
-set $w4 "4: dev"
-set $w5 "5: phd"
-set $w6 "6: phd"
+set $w3 "3: dev I"
+set $w4 "4: dev II"
+set $w5 "5: dev III"
+set $w6 "6: dev IV"
 set $w7 "7: media"
 set $w8 "8: mail"
-set $w9 "9: mm"
+set $w9 "9: im"
 set $w0 "100: tmp"
 
 # ## INPUTS ##
