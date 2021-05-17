@@ -199,3 +199,4 @@ bar {
 exec --no-startup-id "compton --config ~/.config/compton/compton.conf -b"
 exec --no-startup-id "feh --randomize --recursive --bg-fill ~/img/wallpaper"
 exec --no-startup-id "mons -a"
+exec --no-startup-id "dunst"

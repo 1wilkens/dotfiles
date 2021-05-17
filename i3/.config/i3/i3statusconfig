@@ -76,5 +76,5 @@ disk "/" {
 }
 
 disk "/home" {
-	format = "  %avail (/home)"
+        format = "  %avail (/home)"
 }
