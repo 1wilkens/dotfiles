@@ -104,7 +104,7 @@ bindsym $mod+Shift+0 move container to workspace $w10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # exit sway (ends the wayland session)
-bindsym $mod+Shift+e exec "swaynag -t warning -e bottom -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your wayland session.' -b 'Yes, exit sway' 'swaymsg exit'"
+bindsym $mod+Shift+e exec "~/bin/exit_sway" 
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -129,9 +129,7 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
-
 
 # move to other output
 mode "monitor" {
@@ -148,9 +146,7 @@ mode "monitor" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
 bindsym $mod+Shift+m mode "monitor"
-
 
 # bind brightness keys
 bindsym XF86MonBrightnessUp exec "xbacklight -steps 1 -time 0 -inc 10"
