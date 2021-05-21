@@ -1,6 +1,6 @@
 #!/bin/sh
 
-test -n "$(pgrep VirtualBoxVM)" \
+pgrep VirtualBoxVM >/dev/null \
     && i3-nagbar -t warning -m 'Not exiting i3 due to running VirtualBox machines' \
     && exit
 

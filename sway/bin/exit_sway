@@ -1,6 +1,6 @@
 #!/bin/sh
 
-test -n "$(pgrep VirtualBoxVM)" \
+pgrep VirtualBoxVM >/dev/null \
     && swaynag -t warning -e bottom -m 'Not exiting sway due to running VirtualBox machines' \
     && exit
 
