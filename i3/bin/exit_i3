@@ -1,0 +1,5 @@
+#!/bin/sh
+
+test -n "$(pgrep VirtualBoxVM)" && i3-nagbar -t warning -m 'Not exiting i3 due to running VirtualBox machines'
+
+swaynag -t warning -e bottom -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'
