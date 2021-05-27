@@ -13,9 +13,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ciaranm/securemodelines'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-speeddating'
-Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-peekaboo'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
 
 " GUI enhancements
 Plug 'chriskempson/base16-vim'
@@ -23,31 +27,13 @@ Plug 'itchyny/lightline.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mhinz/vim-signify'
 
-" Linting & Quick Fixes (ale)
-Plug 'dense-analysis/ale'
-
-" Completion (ncm2) only supported on >= nvim-0.3
-if has('nvim-0.3')
-    Plug 'roxma/nvim-yarp'
-    Plug 'ncm2/ncm2'
-    " Completion sources
-    Plug 'ncm2/ncm2-bufword'
-end
-
-" LSP support
-" LanguageClient for general integration
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-\ }
-" EchoDoc to show inline function signatures and documentation
-Plug 'Shougo/echodoc.vim'
+" Linting & Quick Fixes (coc)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Language specific
 Plug 'lervag/vimtex'
 Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
-Plug 'arzg/vim-rust-syntax-ext'
 Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'hankchiutw/flutter-reload.vim'
@@ -204,18 +190,56 @@ map <F1> <Esc>
 imap <F1> <Esc>
 
 " Completion
-inoremap <expr><Tab> (pumvisible()?(empty(v:completed_item)?"\<C-n>":"\<C-y>"):"\<Tab>")
-inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
+"
+" 'Smart' nevigation
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 " ======================
 " # LANGUAGE SETTINGS
 " ======================
 
-" Rust
-let g:rustfmt_command = 'rustfmt'
+" rust
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
+let g:rust_clip_command = 'wl-copy'
+
+" Completion
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
 if executable('rustc')
     let $RUST_SRC_PATH = systemlist('rustc --print sysroot')[0] . '/lib/rustlib/src/rust/src'
 end
@@ -235,94 +259,23 @@ let g:vimtex_toc_config = {
 
 let g:tex_flavor = "latex"
 
-" integration with ncm2
-if has('nvim-0.3')
-    augroup vimtex-ncm-setup
-        autocmd!
-        autocmd Filetype tex call ncm2#register_source({
-                \ 'name' : 'vimtex-cmds',
-                \ 'priority': 8,
-                \ 'complete_length': -1,
-                \ 'scope': ['tex'],
-                \ 'matcher': {'name': 'prefix', 'key': 'word'},
-                \ 'word_pattern': '\w+',
-                \ 'complete_pattern': g:vimtex#re#ncm2#cmds,
-                \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-                \ })
-        autocmd Filetype tex call ncm2#register_source({
-                \ 'name' : 'vimtex-labels',
-                \ 'priority': 8,
-                \ 'complete_length': -1,
-                \ 'scope': ['tex'],
-                \ 'matcher': {'name': 'combine',
-                \             'matchers': [
-                \               {'name': 'substr', 'key': 'word'},
-                \               {'name': 'substr', 'key': 'menu'},
-                \             ]},
-                \ 'word_pattern': '\w+',
-                \ 'complete_pattern': g:vimtex#re#ncm2#labels,
-                \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-                \ })
-        autocmd Filetype tex call ncm2#register_source({
-                \ 'name' : 'vimtex-files',
-                \ 'priority': 8,
-                \ 'complete_length': -1,
-                \ 'scope': ['tex'],
-                \ 'matcher': {'name': 'combine',
-                \             'matchers': [
-                \               {'name': 'abbrfuzzy', 'key': 'word'},
-                \               {'name': 'abbrfuzzy', 'key': 'abbr'},
-                \             ]},
-                \ 'word_pattern': '\w+',
-                \ 'complete_pattern': g:vimtex#re#ncm2#files,
-                \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-                \ })
-        autocmd Filetype tex call ncm2#register_source({
-                \ 'name' : 'bibtex',
-                \ 'priority': 8,
-                \ 'complete_length': -1,
-                \ 'scope': ['tex'],
-                \ 'matcher': {'name': 'combine',
-                \             'matchers': [
-                \               {'name': 'prefix', 'key': 'word'},
-                \               {'name': 'abbrfuzzy', 'key': 'abbr'},
-                \               {'name': 'abbrfuzzy', 'key': 'menu'},
-                \             ]},
-                \ 'word_pattern': '\w+',
-                \ 'complete_pattern': g:vimtex#re#ncm2#bibtex,
-                \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-                \ })
-      augroup END
-  end
-
 " ======================
 " # PLUGIN SETTINGS
 " ======================
 
-" ale
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_save = 0
-let g:ale_lint_on_enter = 0
-let g:ale_virtualtext_cursor = 1
-
-" color None seems to only be supported on nvim
-if has('nvim')
-    highlight ALEError guibg=None
-    highlight ALEWarning guibg=None
-end
-
-let g:ale_linters = {'rust': ['rust-analyzer'], 'python': ['flake8']}
-
-let g:ale_rust_rls_config = {
-    \ 'rust': {
-        \ 'all_targets': 1,
-        \ 'build_on_save': 1,
-        \ 'clippy_preference': 'on'
-    \ }
-\ }
-
-let g:ale_python_flake8_options = '--max-line-length=120'
-
+" securemodelines
+let g:secure_modelines_allowed_items = [
+                \ "textwidth",   "tw",
+                \ "softtabstop", "sts",
+                \ "tabstop",     "ts",
+                \ "shiftwidth",  "sw",
+                \ "expandtab",   "et",   "noexpandtab", "noet",
+                \ "filetype",    "ft",
+                \ "foldmethod",  "fdm",
+                \ "readonly",    "ro",   "noreadonly", "noro",
+                \ "rightleft",   "rl",   "norightleft", "norl",
+                \ "colorcolumn"
+                \ ]
 
 " fzf
 let g:fzf_layout = { 'down': '~20%' }
@@ -337,19 +290,24 @@ command! -bang -nargs=* Rg
 let g:goyo_width = '30%'
 let g:goyo_height = '90%'
 
-" languageClient
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rls'],
-    \ }
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_useVirtualText = 0
 
-" ncm2
-if has('nvim-0.3')
-    autocmd BufEnter * call ncm2#enable_for_buffer()
-    set completeopt=noinsert,menuone,noselect
+" lightline
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
+function! LightlineFilename()
+  return expand('%:t') !=# '' ? @% : '[No Name]'
+endfunction
 
-end
+" Use auocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 " notes
 let g:notes_suffix = '.md'
