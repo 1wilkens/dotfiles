@@ -748,15 +748,18 @@ hints:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
-  #- { key: Paste,                                       action: Paste          }
-  #- { key: Copy,                                        action: Copy           }
-  #- { key: L,         mods: Control,                    action: ClearLogNotice }
-  #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  #- { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp,  }
-  #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
-  #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
-  #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
+key_bindings:
+  # defaults
+  - { key: Paste,                                             action: Paste            }
+  - { key: Copy,                                              action: Copy             }
+  - { key: L,         mods: Control,                          action: ClearLogNotice   }
+  - { key: L,         mods: Control,       mode: ~Vi|~Search, chars: "\x0c"            }
+  - { key: PageUp,    mods: Shift,         mode: ~Alt,        action: ScrollPageUp,    }
+  - { key: PageDown,  mods: Shift,         mode: ~Alt,        action: ScrollPageDown   }
+  - { key: Home,      mods: Shift,         mode: ~Alt,        action: ScrollToTop,     }
+  - { key: End,       mods: Shift,         mode: ~Alt,        action: ScrollToBottom   }
+  # custom
+  - { key: N,         mods: Control|Shift,                    action: SpawnNewInstance }
 
   # Vi Mode
   #- { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
