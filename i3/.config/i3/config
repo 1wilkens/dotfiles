@@ -195,8 +195,11 @@ bar {
       status_command i3status-rs ~/.config/i3/i3status.toml
 }
 
+# unset WAYLAND_DISPLAY
+exec --no-startup-id "systemctl --user unset-environment WAYLAND_DISPLAY"
+
 # autostart
 exec --no-startup-id "compton --config ~/.config/compton/compton.conf -b"
 exec --no-startup-id "feh --randomize --recursive --bg-fill ~/img/wallpaper"
 exec --no-startup-id "mons -a"
-exec --no-startup-id "dunst"
+exec --no-startup-id "sleep '2s' && QSyncthingTray"
