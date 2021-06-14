@@ -202,4 +202,4 @@ bar {
 include ~/.config/sway/config.d/*
 
 # autostart
-exec --no-startup-id sleep "2s" && QSyncthingTray
+exec --no-startup-id "sleep '2s' && QSyncthingTray"
