@@ -1,0 +1,4 @@
+#!/bin/sh
+
+unset WAYLAND_DISPLAY
+exec /usr/bin/PortfolioPerformance
