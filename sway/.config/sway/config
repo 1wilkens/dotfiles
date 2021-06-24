@@ -19,9 +19,9 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # <Mod+d> to start bemenu for all applications
-bindsym $mod+d exec --no-startup-id "~/bin/bemenu_run -i --fn DejaVu Sans Mono-11"
+bindsym $mod+d exec --no-startup-id "bemenu-run -i -n --fn DejaVu Sans Mono-11"
 # <Mod+Shift+d> to start j4-dmenu-desktop (bemenu for applications with *.desktop file)
-bindsym $mod+Shift+d exec --no-startup-id j4-dmenu-desktop --dmenu="bemenu -i --fn 'DejaVu Sans Mono-11' --term alacritty
+bindsym $mod+Shift+d exec --no-startup-id j4-dmenu-desktop --dmenu="bemenu -i -n --fn 'DejaVu Sans Mono-11' --term alacritty
 
 # Vi keybindings for window focus
 bindsym $mod+h focus left
