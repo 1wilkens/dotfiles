@@ -1,7 +1,7 @@
 #!/bin/sh
 
-FLUTTER_PACKAGE="flutter-beta"
+set -ex
 
-yay -S --force "${FLUTTER_PACKAGE}"
-sudo chown -R :flutterusers /opt/flutter
-sudo chmod -R g+w /opt/flutter
+FLUTTER_PACKAGE="flutter"
+
+yay -S --overwrite "/opt/flutter/*" "${FLUTTER_PACKAGE}"
