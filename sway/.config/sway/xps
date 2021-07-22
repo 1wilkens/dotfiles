@@ -14,8 +14,11 @@ set $w0 "100: tmp"
 
 # ## OUTPUTS ##
 
-# Internal screen
+# internal screen
 output eDP-1 scale 1.75 bg ~/img/wallpaper/wallpaper fill
 
-# Beamer HDMI
+# home
+output "Unknown 27G2G4 0x00000971" pos 1920 0 bg ~/img/wallpaper/wallpaper fill
+
+# generic beamer HDMI
 output HDMI-A-1 mode 1280x800

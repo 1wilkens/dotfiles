@@ -15,14 +15,14 @@ set $w0 "100: tmp"
 
 # ## OUTPUTS ##
 
-# Internal screen
+# internal screen
 output eDP-1 pos 0 324 bg ~/img/wallpaper/wallpaper fill
 
-# Dell 4K
+# work: Dell 4K
 output "Dell Inc. DELL U2718Q FN84K91Q1V8L" scale 1.25 pos 1920 0 bg ~/img/wallpaper/wallpaper fill
 
-# Homeoffice AOC 27G2G4
+# homeoffice: AOC 27G2G4
 output "Unknown 27G2G4 0x00000971" pos 1920 0 bg ~/img/wallpaper/wallpaper fill
 
-# Beamer HDMI
+# generic beamer HDMI
 output HDMI-A-1 mode 1280x800
