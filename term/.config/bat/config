@@ -1,0 +1,5 @@
+# Set the theme to "TwoDark"
+--theme="TwoDark"
+
+# Show line numbers and Git modifications
+--style="numbers,changes"
