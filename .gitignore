@@ -1,3 +1,6 @@
-# vim temporary files
+# vim: temporary files
 *.swp
 .netrwhist
+
+# zim: .old files
+*.zsh.old

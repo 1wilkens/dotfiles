@@ -1,0 +1,26 @@
+# zim module configuration
+
+## general/utility
+zmodule environment
+zmodule input
+zmodule utility
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-autosuggestions
+
+# exa as a better ls
+zmodule exa
+
+# fzf for fuzzy finding
+zmodule fzf
+
+# git for git aliases
+zmodule git
+
+# theme: sorin
+zmodule prompt-pwd
+zmodule git-info
+zmodule sorin
+
+## completion last
+zmodule zsh-users/zsh-completions --fpath src
+zmodule completion
