@@ -1,7 +1,6 @@
-# .zshrc
+# .zshrc (sourced for interactive sessions)
 
-## prepare zsh/zim environment
-ZDOTDIR="$HOME/.config/zsh"
+## prepare zim environment
 ZIM_HOME="$HOME/.config/zim"
 
 ## zim: configure modules through zstyle
