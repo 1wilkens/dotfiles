@@ -1,0 +1,28 @@
+#!/bin/bash
+
+export BEMENU_BACKEND=wayland
+
+#MENU="bmenu --list --ifne"
+MENU="rofi -dmenu -width 750 -lines 5"
+
+get_modes() {
+    NAME="$1"
+    [ -z "$NAME" ] && exit 1
+    swaymsg -t get_outputs | jq -r '.[] | select(.name == "'$NAME'") | .modes[] | "\(.width)x\(.height) (\(.refresh))"'
+}
+
+set_mode() {
+    NAME="$1"
+    MODE="$2"
+    [ -z "$NAME" ] && exit 1
+    [ -z "$MODE" ] && exit 1
+    swaymsg output "$NAME" mode "$MODE"
+}
+
+OUTPUT=$(swaymsg -t get_outputs \
+    | jq -r '.[] | "\(.name):\t\(.make) \(.model) (\(.current_mode.width)x\(.current_mode.height))"' \
+    | $MENU -p 'Monitors' | cut -d':' -f1)
+
+MODE=$(get_modes "$OUTPUT" | $MENU -p 'Modes' | cut -d'(' -f1)
+
+set_mode "$OUTPUT" "$MODE"

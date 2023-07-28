@@ -1,0 +1,88 @@
+{
+    //***************************
+    //*  bar configuration  *
+    //***************************
+
+    "layer": "top", // Waybar at top layer
+    // "position": "top", // Waybar position (top|bottom|left|right)
+    // "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "margin": "10 10 0 10",
+
+    "modules-left": ["sway/workspaces", "sway/mode", "pulseaudio"],
+    "modules-center": ["clock"],
+    "modules-right": ["network", "cpu", "memory", "battery", "tray"],
+
+    //***************************
+    //*  modules configuration  *
+    //***************************
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "pulseaudio": {
+        "scroll-step": 5, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr}  ",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": "Disconnected  ⚠",
+        // "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
+    },
+
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "{}% "
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            // "charged": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% ({time}) {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ({time}) ",
+        // "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+}

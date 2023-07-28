@@ -1,0 +1,11 @@
+[Unit]
+Description=Gamma Manager for wayland
+Documentation=man:gammstep(1)
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/gammastep
+
+[Install]
+WantedBy=sway-session.target

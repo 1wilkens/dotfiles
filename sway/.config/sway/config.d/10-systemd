@@ -1,0 +1,4 @@
+# assign cgroups for new apps
+exec ~/.config/sway/assign-cgroups.py
+# and properly register the session with systemd
+exec ~/.config/sway/session.sh

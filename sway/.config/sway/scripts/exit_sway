@@ -1,0 +1,7 @@
+#!/bin/sh
+
+pgrep VirtualBoxVM >/dev/null \
+    && swaynag -t warning -e bottom -m 'Not exiting sway due to running VirtualBox machines' \
+    && exit
+
+swaynag -t warning -e bottom -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your wayland session.' -b 'Yes, exit sway' 'swaymsg exit'

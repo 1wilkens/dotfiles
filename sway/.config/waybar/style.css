@@ -1,0 +1,199 @@
+/* colors */
+
+/* base16-atelier-dune */
+@define-color base00 #20201d;
+@define-color base01 #292824;
+@define-color base02 #6e6b5e;
+@define-color base03 #7d7a68;
+@define-color base04 #999580;
+@define-color base05 #a6a28c;
+@define-color base06 #e8e4cf;
+@define-color base07 #fefbec;
+@define-color base08 #d73737;
+@define-color base09 #b65611;
+@define-color base0A #ae9513;
+@define-color base0B #60ac39;
+@define-color base0C #1fad83;
+@define-color base0D #6684e1;
+@define-color base0E #b854d4;
+@define-color base0F #d43552;
+
+@define-color bg        @base00;
+@define-color fg        @base06;
+
+@define-color warning   @base0A;
+@define-color critical  @base0F;
+
+* {
+    border: none;
+    border-radius: 0;
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: Roboto, Nerd Font Mono;
+    font-size: 13px;
+    min-height: 25px;
+}
+
+label {
+    color: @fg;
+}
+
+/* fixme: figure out to apply this more selectively */
+:disabled {
+    color: @fg;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces {
+    color: @fg;
+    background: @bg;
+    margin-right: 8px;
+    border-radius: 10px;
+    transition: none;
+}
+
+#workspaces button {
+    color: @fg;
+    background-color: transparent;
+    padding: 0 5px;
+    border-bottom: 3px solid transparent;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inherit;
+    border-bottom: 3px solid #ffffff;
+}
+
+#workspaces button.focused {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: @critical;
+}
+
+#mode {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
+}
+
+#mode {
+    color: @fg;
+    padding: 0 10px;
+    margin: 0 4px;
+}
+
+#custom-media {
+    color: @fg;
+    background: @bg;
+    margin-right: 8px;
+    min-width: 100px;
+    border-radius: 10px;
+}
+
+#custom-media.custom-spotify {
+    background: @base0B;
+}
+
+#custom-media.custom-vlc {
+    background: @base09;
+}
+
+#pulseaudio {
+    color: @fg;
+    background: @bg;
+    margin-right: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+    transition: none;
+}
+
+#clock {
+    color: @fg;
+    background: @bg;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+    transition: none;
+}
+
+#network {
+    color: @fg;
+    background: @bg;
+    margin-right: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+    transition: none;
+}
+
+#cpu {
+    color: @fg;
+    background: @bg;
+    margin-right: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+    transition: none;
+}
+
+#memory {
+    color: @fg;
+    background: @bg;
+    margin-right: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+    transition: none;
+}
+
+#battery {
+    color: @fg;
+    background: @bg;
+    margin-right: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+    transition: none;
+}
+
+#battery.warning:not(.charging) {
+    background: @warning;
+}
+
+#battery.critical:not(.charging) {
+    color: @fg;
+    background-color: @critical;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#tray {
+    color: @fg;
+    background: @bg;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+    transition: none;
+}
+
+/* keyframes */
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}

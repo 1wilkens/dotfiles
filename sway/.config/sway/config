@@ -1,0 +1,205 @@
+# Inputs
+input * xkb_layout "de"
+# TODO: Fix input name
+input * tap enabled
+
+# Windows key is mod
+set $mod Mod4
+
+# Font is DejaVu Sans Mono with Icon fallback
+font pango:DejaVu Sans Mono, Icons 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# <Mod-Enter> to start alacritty
+bindsym $mod+Return exec alacritty
+
+# <Mod-Shift-q> to force kill the window
+bindsym $mod+Shift+q kill
+
+# <Mod+d> to start bemenu for all applications
+bindsym $mod+d exec --no-startup-id "bemenu-run -i -n --fn DejaVu Sans Mono-11"
+# <Mod+Shift+d> to start j4-dmenu-desktop (bemenu for applications with *.desktop file)
+bindsym $mod+Shift+d exec --no-startup-id j4-dmenu-desktop --dmenu="bemenu -i -n --fn 'DejaVu Sans Mono-11' --term alacritty
+
+# Vi keybindings for window focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Currently also with arrow keys..
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Vi keybindings for window movement
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Currently also with arrow keys..
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# <Mod+(b,v)> to controll container splits
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# include machine specific configuration (includes workspace definitions)
+include "~/.config/sway/$(hostname | sha384sum | cut -c1-16)"
+
+# <Mod+(Shift)+Tab> to cycle workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+bindsym $mod+0 workspace $w0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9
+bindsym $mod+Shift+0 move container to workspace $w10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# exit sway (ends the wayland session)
+bindsym $mod+Shift+e exec "~/bin/exit_sway" 
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# move to other output
+mode "monitor" {
+    bindsym Left move container to output left
+    bindsym Right move container to output right
+    bindsym Up move container to output up
+    bindsym Down move container to output down
+
+    bindsym Shift+Left move workspace to output left
+    bindsym Shift+Right move workspace to output right
+    bindsym Shift+Up move workspace to output up
+    bindsym Shift+Down move workspace to output down
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+m mode "monitor"
+
+# bind brightness keys
+bindsym XF86MonBrightnessUp exec "brightnessctl s +10%"
+bindsym XF86MonBrightnessDown exec "brightnessctl s 10%-"
+
+# bind volume keys
+bindsym XF86AudioRaiseVolume exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+bindsym XF86AudioLowerVolume exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
+bindsym XF86AudioMute exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+bindsym XF86AudioMicMute exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+# bind media keys
+bindsym XF86AudioPrev exec "playerctl previous"
+bindsym XF86AudioPlay exec "playerctl play-pause"
+bindsym XF86AudioPause exec "playerctl play-pause"
+bindsym XF86AudioNext exec "playerctl next"
+
+# <Mod+Shift+#> sets new random wallpapers
+bindsym $mod+Shift+numbersign exec "systemctl --user restart randpaper.service"
+
+# rofi menus (audio + monitor)
+bindsym $mod+F1 exec "~/bin/pa_switchsink"
+bindsym $mod+F9 exec "~/bin/sway_monitor"
+
+# <Mod+Shift+x> locks via swaylock
+bindsym $mod+Shift+x exec "swaylock -elfF -c 000000"
+
+# screenshots
+# - Print for whole screen
+bindsym Print exec swayshot
+# - Alt + Print for a focused window
+bindsym Mod1+Print exec swayshot window
+# - Shift + Print for a selected region
+bindsym Shift+Print exec swayshot region
+
+default_border none
+
+# gaps
+gaps outer 5
+gaps inner 10
+#smart_gaps on
+
+bar {
+      font pango:DejaVu Sans Mono, Icons 10
+      position top
+
+      #status_command ~/src/rust/i3status-rust/target/release/i3status-rs ~/.config/i3/i3status.toml
+      #status_command i3status-rs ~/.config/i3/i3status.toml
+      swaybar_command waybar
+}
+
+# include dynamic configuration from config.d
+include ~/.config/sway/config.d/*
+
+# autostart
+exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
