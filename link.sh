@@ -17,8 +17,15 @@ fi
 if [[ "$*" == *"gpg"* ]]
 then
     echo "--> gpg"
-    mkdir ~/.gnupg
+    mkdir -p ~/.gnupg
     $_STOW gpg
+fi
+
+if [[ "$*" == *"scripts"* ]]
+then
+    echo "--> scripts"
+    mkdir -p ~/bin
+    $_STOW scripts
 fi
 
 if [[ "$*" == *"sway"* ]]
@@ -38,6 +45,7 @@ fi
 if [[ "$*" == *"xdg"* ]]
 then
     echo "--> xdg"
+    mkdir -p ~/.config
     $_STOW xdg
 fi
 

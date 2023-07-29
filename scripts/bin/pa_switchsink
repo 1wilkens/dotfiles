@@ -1,0 +1,55 @@
+#!/bin/bash
+
+#########################################################
+#
+# pa_switchsink
+#
+# Set active pulseaudio sink
+#
+# Requires:
+#  - pactl
+#  - gawk
+#  - rofi
+#
+# Configure your rofi options here:
+#
+
+ROFI_OPTIONS="-p Audio-Sinks -width 600 -lines 5"
+
+#
+#########################################################
+
+set_default_sink() {
+    read SINK
+    [ -z "$SINK" ] && exit
+    pactl set-default-sink "$SINK"
+    pactl list sink-inputs | grep "Sink Input" | while read line; do
+        pactl move-sink-input $(echo $line | cut -d'#' -f2) "$SINK"
+    done
+}
+
+
+pactl list sinks | awk '
+    BEGIN { item = 1 }
+    /^Sink/ {
+        if (item in sinks)
+            item++
+        split($0, result, "#")
+        sinks[item]["sink"] = result[2]
+        next
+    }
+    /State:/ {
+        sinks[item]["active"] = ($2 == "RUNNING" ? "*" : "-")
+        next
+    }
+    /Description:/ {
+        split($0, result, ":")
+        sinks[item]["name"] = result[2]
+        next
+    }
+    END {
+        for (item in sinks) {
+            print(sinks[item]["active"] " " sinks[item]["sink"] sinks[item]["name"])
+        }
+    }
+' | rofi -dmenu ${ROFI_OPTIONS} | cut -d' ' -f2 | set_default_sink

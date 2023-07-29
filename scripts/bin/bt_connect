@@ -1,0 +1,33 @@
+#!/bin/bash
+
+ARG=${1:-"bose700"}
+
+declare -A MACS
+MACS["ear1"]="2C:BE:EB:00:B8:6C"
+MACS["bose700"]="78:2B:64:16:3A:E1"
+
+if [ -v MACS["${ARG}"] ]; then
+    DEVICE="${MACS[${ARG}]}"
+else
+    DEVICE="${ARG}"
+fi
+
+echo "Device MAC: ${DEVICE}"
+
+echo "power on" | bluetoothctl &> /dev/null
+
+connected="$(bluetoothctl info ${DEVICE} | grep 'Connected: yes')"
+if [ -n "${connected}" ]; then
+    echo "Already connected! Exiting.."
+    exit
+fi
+
+echo "Trying to connect. This may take a few seconds."
+echo -n "Hit CTRL+C to exit.."
+while [ -z "${connected}" ]; do
+    echo "connect ${DEVICE}" | bluetoothctl &>/dev/null
+    echo -n "."
+    sleep 2s
+    connected="$(bluetoothctl info ${DEVICE} | grep 'Connected: yes')"
+done
+echo -e "\nConnection successful! Exiting.."
