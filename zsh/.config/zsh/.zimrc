@@ -5,6 +5,7 @@ zmodule environment
 zmodule input
 zmodule utility
 zmodule zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-history-substring-search
 zmodule zsh-users/zsh-autosuggestions
 
 # exa as a better ls
