@@ -67,9 +67,7 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # keybinds
-#
-# ctrl-r: regular history-search
-bindkey '^r' history-incremental-search-backward
-# up/down: history-substring-search
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+source $ZDOTDIR/keybinds.zsh
+
+# aliases
+source $ZDOTDIR/aliases.zsh
