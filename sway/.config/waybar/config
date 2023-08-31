@@ -21,6 +21,24 @@
         "format": "<span style=\"italic\">{}</span>"
     },
 
+    // "custom/media": {
+    //     "format": "{icon} {}",
+    //     "max-length": 40,
+    //     "format-icons": {
+    //         "spotify": "",
+    //         "default": "🎜"
+    //     },
+    //     "escape": true,
+    //     "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources folder
+    //     // "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    //     "return-type": "json",
+    // },
+
+    "clock": {
+        "format": "{:%a, %d.%m.%Y\t%H:%M}",
+        "tooltip": false
+    },
+
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
