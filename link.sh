@@ -49,6 +49,13 @@ then
     $_STOW xdg
 fi
 
+if [[ "$*" == *"vim"* ]]
+then
+    echo "--> vim"
+    mkdir -p ~/.config/nvim/{after/plugin,ftplugin,lua,plugin}
+    $_STOW vim
+fi
+
 if [[ "$*" == *"zsh"* ]]
 then
     echo "--> zsh"
