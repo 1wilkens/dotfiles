@@ -38,7 +38,7 @@ fi
 if [[ "$*" == *"term"* ]]
 then
     echo "--> term"
-    mkdir -p ~/.config/{zsh,zim/modules}
+    mkdir -p ~/.config/{alacritty,bat}
     $_STOW term
 fi
 
@@ -59,7 +59,7 @@ fi
 if [[ "$*" == *"zsh"* ]]
 then
     echo "--> zsh"
-    mkdir -p ~/.config
+    mkdir -p ~/.config/{zsh,zim/modules}
     $_STOW zsh
 fi
 
