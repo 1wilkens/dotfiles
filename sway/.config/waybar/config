@@ -26,7 +26,7 @@
     //     "max-length": 40,
     //     "format-icons": {
     //         "spotify": "",
-    //         "default": "🎜"
+    //         "default": ""
     //     },
     //     "escape": true,
     //     "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources folder
@@ -43,14 +43,14 @@
         "scroll-step": 5, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-bluetooth-muted": "  {icon} {format_source}",
+        "format-muted": "  {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
             "headphones": "",
-            "handsfree": "",
-            "headset": "",
+            "handsfree": "HANDSFREE",
+            "headset": "HANDSET",
             "phone": "",
             "portable": "",
             "car": "",
@@ -62,9 +62,9 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%)  ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr}  ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr}  󰈀",
         "format-linked": "{ifname} (No IP)  ",
-        "format-disconnected": "Disconnected  ⚠",
+        "format-disconnected": "Disconnected  󰀧",
         // "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
 
@@ -75,7 +75,7 @@
     },
 
     "cpu": {
-        "format": "{usage}% ",
+        "format": "{usage}% ",
         "tooltip": false
     },
 
@@ -84,7 +84,7 @@
     },
 
     "battery": {
-        "bat": "BAT0",
+        //"bat": "BAT0", // optional: force battery device
         "states": {
             // "charged": 95,
             "warning": 30,
@@ -92,7 +92,7 @@
         },
         "format": "{capacity}% ({time}) {icon}",
         "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ({time}) ",
+        "format-charging": "{capacity}% ({time}) 󱐋",
         // "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",

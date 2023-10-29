@@ -72,7 +72,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # include machine specific configuration (includes workspace definitions)
-include $HOME/.config/sway/"$(hostname | sha384sum | cut -c1-16)"
+include $HOME/.config/sway/"$(hostnamectl hostname | sha384sum | cut -c1-16)"
 
 # <Mod+(Shift)+Tab> to cycle workspaces
 bindsym $mod+Tab workspace next
@@ -149,8 +149,8 @@ mode "monitor" {
 bindsym $mod+Shift+m mode "monitor"
 
 # bind brightness keys
-bindsym XF86MonBrightnessUp exec brightnessctl s +10%
-bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl -q s +5%
+bindsym XF86MonBrightnessDown exec brightnessctl -q s 5%-
 
 # bind volume keys
 bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
@@ -193,7 +193,6 @@ bar {
       font pango:DejaVu Sans Mono, Icons 10
       position top
 
-      #status_command ~/src/rust/i3status-rust/target/release/i3status-rs ~/.config/i3/i3status.toml
       #status_command i3status-rs ~/.config/i3/i3status.toml
       swaybar_command waybar
 }

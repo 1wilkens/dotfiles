@@ -1,0 +1,24 @@
+# WORKSPACES
+set $w1 "1: zsh"
+set $w2 "2: web"
+set $w3 "3: dev I"
+set $w4 "4: dev II"
+set $w5 "5: dev III"
+set $w6 "6: dev IV"
+set $w7 "7: media"
+set $w8 "8: mail"
+set $w9 "9: im"
+set $w0 "100: tmp"
+
+# ## INPUTS ##
+
+# ## OUTPUTS ##
+
+# internal screen
+output eDP-1 pos 0 118 scale 1.25 bg ~/img/wallpaper/.desktop fill
+
+# home
+output "Beihai Century Joint Innovation Technology Co.,Ltd M27-4K-144-C 0000000000000" pos 1804 0 scale 1.5 bg ~/img/wallpaper/.desktop fill
+
+# generic beamer HDMI
+output HDMI-A-1 mode 1280x800
