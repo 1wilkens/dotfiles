@@ -4,7 +4,7 @@ set -eu
 
 SRC="$(dirname $0)"
 DEST="$HOME"
-_STOW="$(which stow) -d $SRC -t $DEST -vS"
+_STOW="$(which stow) --dotfiles -d $SRC -t $DEST -vS"
 
 echo "# Preparing folders and linking.."
 
