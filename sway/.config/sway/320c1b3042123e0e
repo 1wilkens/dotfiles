@@ -15,7 +15,7 @@ set $w0 "100: tmp"
 # ## OUTPUTS ##
 
 # internal screen
-output eDP-1 pos 0 118 scale 1.25 bg ~/img/wallpaper/.desktop fill
+output eDP-1 pos 0 118 scale 1.50 bg ~/img/wallpaper/.desktop fill
 
 # home
 output "Beihai Century Joint Innovation Technology Co.,Ltd M27-4K-144-C 0000000000000" pos 1804 0 scale 1.5 bg ~/img/wallpaper/.desktop fill
