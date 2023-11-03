@@ -31,7 +31,7 @@ fi
 if [[ "$*" == *"sway"* ]]
 then
     echo "--> sway"
-    mkdir -p ~/.config/{systemd/user/sway-session.target.wants,}
+    mkdir -p ~/.config/{gammastep,kanshi,mako,sway,waybar,systemd/user/sway-session.target.wants,}
     $_STOW sway
 fi
 
