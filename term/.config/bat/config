@@ -1,5 +1,5 @@
-# Set the theme to "TwoDark"
---theme="TwoDark"
+# Set the theme to base16
+--theme="base16"
 
 # Show line numbers and Git modifications
 --style="numbers,changes"

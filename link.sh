@@ -38,7 +38,7 @@ fi
 if [[ "$*" == *"term"* ]]
 then
     echo "--> term"
-    mkdir -p ~/.config/{alacritty,bat}
+    mkdir -p ~/.config/{alacritty,bat,flavours}
     $_STOW term
 fi
 
