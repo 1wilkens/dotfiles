@@ -21,6 +21,14 @@ then
     $_STOW gpg
 fi
 
+if [[ "$*" == *"gtk"* ]]
+then
+    echo "--> gtk"
+    mkdir -p ~/.themes
+    mkdir -p ~/.config/{gtk-3.0,}
+    $_STOW gtk
+fi
+
 if [[ "$*" == *"scripts"* ]]
 then
     echo "--> scripts"

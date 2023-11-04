@@ -2,3 +2,6 @@
 	path = term/.config/base16-shell
 	url = https://github.com/chriskempson/base16-shell.git
 	branch = master
+[submodule "gtk/.themes/FlatColor"]
+	path = gtk/.themes/FlatColor
+	url = https://github.com/jasperro/FlatColor
