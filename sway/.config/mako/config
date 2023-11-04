@@ -1,13 +1,38 @@
+anchor=top-right
 default-timeout=7500
 ignore-timeout=1
-font=monospace 11
 markup=1
 
-# colors
-background-color=#20201d
-text-color=#e8e4cf
-border-color=#e8e4cf
+font="DejaVuSansM Nerd Font 11"
+icons=1
+icon-path=/usr/share/icons/Papirus-Dark
+max-icon-size=48
+
+width=300
+height=150
 border-radius=3
 
+# Start flavours
+## Base16 Atelier Dune
+# Author: Bram de Haan (http://atelierbramdehaan.nl)
+#
+# You can use these variables anywhere in the mako configuration file.
+
+background-color=#20201d
+text-color=#a6a28c
+border-color=#7d7a68
+
+[urgency=low]
+background-color=#20201d
+text-color=#a6a28c
+border-color=#7d7a68
+
+[urgency=high]
+background-color=#20201d
+text-color=#a6a28c
+border-color=#d73737
+# End flavours
+
+# this needs to be last to not override the rest of the config
 [mode=dnd]
 invisible=1

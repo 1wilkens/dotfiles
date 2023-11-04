@@ -6,6 +6,15 @@ input * tap enabled
 # Windows key is mod
 set $mod Mod4
 
+# load theme definition
+include ~/.config/sway/theme
+
+# apply colorscheme
+client.focused           $base02 $base00 $base05 $base00 $base00
+client.unfocused         $base02 $base00 $base04 $base00 $base00
+client.focused_inactive  $base02 $base00 $base04 $base00 $base00
+client.urgent            $base02 $base00 $base04 $base00 $base00
+
 # Font is DejaVu Sans Mono with Icon fallback
 font pango:DejaVu Sans Mono, Icons 8
 
@@ -104,7 +113,7 @@ bindsym $mod+Shift+0 move container to workspace $w10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # exit sway (ends the wayland session)
-bindsym $mod+Shift+e exec $HOME/.config/sway/scripts/exit_sway 
+bindsym $mod+Shift+e exec $HOME/.config/sway/scripts/exit_sway
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -190,7 +199,7 @@ gaps inner 10
 #smart_gaps on
 
 bar {
-      font pango:DejaVu Sans Mono, Icons 10
+      font pango:SauceCodePro Nerd Font Mono, Icons 10
       position top
 
       #status_command i3status-rs ~/.config/i3/i3status.toml
@@ -198,9 +207,13 @@ bar {
 }
 
 # include dynamic configuration from config.d
-include ~/.config/sway/config.d/*
+include $HOME/.config/sway/config.d/*
 
 # update environment
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+# apply GTK settings
+exec_always $HOME/.config/sway/scripts/import_gsettings
+
 # autostart
+exec nm-applet --indicator
