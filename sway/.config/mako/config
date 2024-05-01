@@ -3,7 +3,7 @@ default-timeout=7500
 ignore-timeout=1
 markup=1
 
-font="DejaVuSansM Nerd Font 11"
+font="SauceCodePro NF 10"
 icons=1
 icon-path=/usr/share/icons/Papirus-Dark
 max-icon-size=48

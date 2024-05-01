@@ -10,13 +10,13 @@ set $mod Mod4
 include ~/.config/sway/theme
 
 # apply colorscheme
-client.focused           $base02 $base00 $base05 $base00 $base00
+client.focused           $base02 $base00 $base0B $base00 $base00
 client.unfocused         $base02 $base00 $base04 $base00 $base00
 client.focused_inactive  $base02 $base00 $base04 $base00 $base00
-client.urgent            $base02 $base00 $base04 $base00 $base00
+client.urgent            $base08 $base00 $base04 $base00 $base00
 
-# Font is DejaVu Sans Mono with Icon fallback
-font pango:DejaVu Sans Mono, Icons 8
+# Font is SauceCodePro (SourceCodePro Nerd variant) with Icon fallback
+font pango:SauceCodePro NF, Icons 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -194,15 +194,14 @@ bindsym Shift+Print exec swayshot region
 default_border none
 
 # gaps
-gaps outer 5
+gaps outer 1
 gaps inner 10
 #smart_gaps on
 
 bar {
-      font pango:SauceCodePro Nerd Font Mono, Icons 10
+      font pango:SauceCodePro NF, Icons 10
       position top
 
-      #status_command i3status-rs ~/.config/i3/i3status.toml
       swaybar_command waybar
 }
 
