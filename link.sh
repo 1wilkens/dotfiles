@@ -60,7 +60,7 @@ fi
 if [[ "$*" == *"vim"* ]]
 then
     echo "--> vim"
-    mkdir -p ~/.config/nvim/{after/plugin,ftplugin,lua,plugin}
+    mkdir -p ~/.config/nvim/
     $_STOW vim
 fi
 
