@@ -26,7 +26,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 base16_atelier-dune
 
-# set precmd and preexec hookss
+# set precmd and preexec hooks
 #
 autoload -Uz add-zsh-hook
 
@@ -65,6 +65,9 @@ fi
 export SSH_AGENT_PID=""
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 gpg-connect-agent updatestartuptty /bye >/dev/null
+
+# environment
+source $ZDOTDIR/environment.zsh
 
 # keybinds
 source $ZDOTDIR/keybinds.zsh

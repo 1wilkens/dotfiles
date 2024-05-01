@@ -7,7 +7,7 @@ ZDOTDIR="$HOME/.config/zsh"
 # - make them unique
 # - prepend $HOME/bin
 typeset -U path PATH
-path=($HOME/bin $path)
+path=($HOME/bin $HOME/.local/bin $path)
 export PATH
 
 # $EDITOR/$VISUAL
