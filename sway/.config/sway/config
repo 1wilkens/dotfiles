@@ -178,6 +178,7 @@ bindsym $mod+Shift+numbersign exec $HOME/bin/randpaper.sh
 
 # rofi menus (audio + monitor)
 bindsym $mod+F1 exec $HOME/bin/pa_switchsink
+bindsym $mod+F5 exec $HOME/.config/sway/scripts/sway_kblayout
 bindsym $mod+F9 exec $HOME/.config/sway/scripts/sway_monitor
 
 # <Mod+Shift+x> locks via swaylock

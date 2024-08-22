@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#########################################################
+#
+# sway_kblayout
+#
+# Set active keyboard layout via swaymsg
+#
+# Requires:
+#  - rofi
+#  - swaymsg
+#
+#########################################################
+
+MENU="rofi -dmenu -sep | -l 5 -no-custom"
+
+set_layout() {
+    read LAYOUT
+    [ -z "${LAYOUT}" ] && exit
+    swaymsg "input * xkb_layout ${LAYOUT}"
+}
+
+echo "us(intl)|de" \
+    | $MENU -p 'Keyboard-Layouts' \
+    | set_layout
