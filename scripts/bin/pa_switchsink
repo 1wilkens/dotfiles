@@ -11,13 +11,9 @@
 #  - gawk
 #  - rofi
 #
-# Configure your rofi options here:
-#
-
-ROFI_OPTIONS="-p Audio-Sinks -width 600 -lines 5"
-
-#
 #########################################################
+
+MENU="rofi -dmenu -l 10 -no-custom"
 
 set_default_sink() {
     read SINK
@@ -28,8 +24,8 @@ set_default_sink() {
     done
 }
 
-
-pactl list sinks | awk '
+pactl list sinks \
+    | awk '
     BEGIN { item = 1 }
     /^Sink/ {
         if (item in sinks)
@@ -52,4 +48,7 @@ pactl list sinks | awk '
             print(sinks[item]["active"] " " sinks[item]["sink"] sinks[item]["name"])
         }
     }
-' | rofi -dmenu ${ROFI_OPTIONS} | cut -d' ' -f2 | set_default_sink
+' \
+    | $MENU -p Audio-Sinks \
+    | cut -d' ' -f2 \
+    | set_default_sink
