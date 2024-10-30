@@ -50,18 +50,18 @@ then
     $_STOW term
 fi
 
-if [[ "$*" == *"xdg"* ]]
-then
-    echo "--> xdg"
-    mkdir -p ~/.config
-    $_STOW xdg
-fi
-
 if [[ "$*" == *"vim"* ]]
 then
     echo "--> vim"
     mkdir -p ~/.config/nvim/
     $_STOW vim
+fi
+
+if [[ "$*" == *"xdg"* ]]
+then
+    echo "--> xdg"
+    mkdir -p ~/.config
+    $_STOW xdg
 fi
 
 if [[ "$*" == *"zsh"* ]]
