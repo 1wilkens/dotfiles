@@ -1,5 +1,5 @@
 # Inputs
-input * xkb_layout "de"
+input * xkb_layout "us(intl)"
 # TODO: Fix input name
 input * tap enabled
 
@@ -217,3 +217,4 @@ exec_always $HOME/.config/sway/scripts/import_gsettings
 
 # autostart
 exec nm-applet --indicator
+exec gammastep-indicator
