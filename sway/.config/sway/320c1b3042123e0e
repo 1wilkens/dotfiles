@@ -24,4 +24,4 @@ output "Beihai Century Joint Innovation Technology Co.,Ltd M27-4K-144-C 00000000
 output HDMI-A-1 mode 1280x800
 
 # AUTOSTART
-exec syncthingtray-qt6
+exec syncthingtray-qt6 --wait
