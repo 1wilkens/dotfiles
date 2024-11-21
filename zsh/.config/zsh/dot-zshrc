@@ -61,11 +61,6 @@ if [[ "$TERM" == (Eterm*|alacritty*|aterm*|foot*|gnome*|konsole*|kterm*|putty*|r
     add-zsh-hook -Uz preexec xterm_title_preexec
 fi
 
-# gpg-agent: setup environment and update tty
-export SSH_AGENT_PID=""
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
-gpg-connect-agent updatestartuptty /bye >/dev/null
-
 # environment
 source $ZDOTDIR/environment.zsh
 
