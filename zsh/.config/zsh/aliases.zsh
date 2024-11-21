@@ -2,9 +2,15 @@
 
 # ls -> eza
 if has_binary "eza"; then
-    alias ls='eza --group --group-directories-first'
+    alias ls='eza --group --group-directories-first --icons'
+    alias ll='ls -l'
+    alias la='ls -la'
+
+    alias tree='eza -l --tree --icons'
+else
+    alias ll='ls -lh'
+    alias la='ls -lah'
 fi
-alias la='ls -lah'
 
 # all-in nvim
 if has_binary "nvim"; then
