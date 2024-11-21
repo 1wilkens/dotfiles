@@ -1,11 +1,15 @@
 # aliases.zsh - custom aliases
 
 # ls -> eza
-alias ls='eza --group --group-directories-first'
-alias la='ls -la'
+if has_binary "eza"; then
+    alias ls='eza --group --group-directories-first'
+fi
+alias la='ls -lah'
 
 # all-in nvim
-alias vim='nvim'
+if has_binary "nvim"; then
+    alias vim='nvim'
+fi
 
 # git
 alias gcam='git commit --all --message'
