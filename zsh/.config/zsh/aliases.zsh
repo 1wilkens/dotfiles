@@ -1,7 +1,7 @@
 # aliases.zsh - custom aliases
 
 # ls -> eza
-if has_binary "eza"; then
+if has_binary 'eza'; then
     alias ls='eza --group --group-directories-first --icons'
     alias ll='ls -l'
     alias la='ls -la'
@@ -13,10 +13,14 @@ else
 fi
 
 # all-in nvim
-if has_binary "nvim"; then
+if has_binary 'nvim'; then
     alias vim='nvim'
 fi
 
 # git
 alias gcam='git commit --all --message'
 
+# brew
+if is_macos; then
+    alias brewup='brew update && brew upgrade && brew cleanup'
+fi
