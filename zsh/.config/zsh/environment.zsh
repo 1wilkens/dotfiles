@@ -21,6 +21,10 @@ if ! is_macos; then
 
     ## java: fix certain java windows under tiling WMs
     export _JAVA_AWT_WM_NONREPARENTING=1
+
+    # required on Ubuntu to prevent a warning of compinit being called twice
+    OS_RELEASE="$(awk -F= '/^NAME/{print $2}' /etc/os-release)"
+    [[ "${OS_RELEASE}" == '"Ubuntu"' ]] && skip_global_compinit=1
 fi
 
 # macOS
@@ -29,10 +33,24 @@ if is_macos; then
     export CB_COPY_CMD="pbcopy"
     export CB_PASTE_CMD="pbpaste"
 
-    ## homebrew: setup path and overall shell env
-    if (( ${+commands[brew]} )); then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    else
-        echo "Homebrew is missing. You may want to install it.."
+    ## homebrew: setup shell env and adapt path
+    if ! (( ${+commands[brew]} )); then
+        if [[ -d /opt/homebrew ]]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+
+            # prefer brew variants over builtin tools
+            typeset -U path PATH
+            if [[ -d $HOMEBREW_PREFIX/opt/curl ]]; then
+                path=($HOMEBREW_PREFIX/opt/curl/bin $path)
+            fi
+            if [[ -d $HOMEBREW_PREFIX/opt/rustup ]]; then
+                path=($HOMEBREW_PREFIX/opt/rustup/bin $path)
+            fi
+            export PATH
+        else
+            echo "brew is not installed. You may want to install it from https://brew.sh"
+        fi
+
     fi
+
 fi
