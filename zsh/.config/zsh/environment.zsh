@@ -21,10 +21,6 @@ if ! is_macos; then
 
     ## java: fix certain java windows under tiling WMs
     export _JAVA_AWT_WM_NONREPARENTING=1
-
-    # required on Ubuntu to prevent a warning of compinit being called twice
-    OS_RELEASE="$(awk -F= '/^NAME/{print $2}' /etc/os-release)"
-    [[ "${OS_RELEASE}" == '"Ubuntu"' ]] && skip_global_compinit=1
 fi
 
 # macOS
