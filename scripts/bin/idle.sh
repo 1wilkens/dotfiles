@@ -11,7 +11,6 @@ else
     if xset q | grep -qF "DPMS is Enabled"; then
         xset -dpms s off
     else
-
         xset +dpms s default
     fi
     xset dpms q
