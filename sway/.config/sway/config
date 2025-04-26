@@ -158,20 +158,20 @@ mode "monitor" {
 bindsym $mod+Shift+m mode "monitor"
 
 # bind brightness keys
-bindsym XF86MonBrightnessUp exec brightnessctl -q s +5%
-bindsym XF86MonBrightnessDown exec brightnessctl -q s 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl -q s +5%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl -q s 5%-
 
 # bind volume keys
-bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
-bindsym XF86AudioLowerVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-
-bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
 # bind media keys
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPause exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
 
 # <Mod+Shift+#> sets new random wallpapers
 bindsym $mod+Shift+numbersign exec $HOME/bin/randpaper.sh
