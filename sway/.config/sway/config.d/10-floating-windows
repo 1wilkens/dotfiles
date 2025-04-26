@@ -1,0 +1,4 @@
+# 10-floating-windows: assign floating to various windows
+
+## pinentry-gtk
+for_window [class="Pinentry-gtk"] floating enable
