@@ -8,11 +8,11 @@ zmodule zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 zmodule zsh-users/zsh-autosuggestions
 
-# exa as a better ls
+# eza as a better ls
 zmodule exa
 
 # fzf for fuzzy finding
-zmodule fzf
+#zmodule fzf
 
 # git for git aliases
 zmodule git

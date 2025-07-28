@@ -10,13 +10,13 @@ typeset -U path PATH
 path=($HOME/bin $HOME/.local/bin $path)
 export PATH
 
-# has_binary: util function to check if a binary exists in path
-function has_binary () {
+# has_executable: util function to check if an executable exists in path
+function has_executable () {
     command -v "$1" >/dev/null 2>&1
 }
 
 # $EDITOR/$VISUAL
-if has_binary "nvim"; then
+if has_executable "nvim"; then
     export EDITOR=nvim
     export VISUAL=nvim
 else
