@@ -8,3 +8,4 @@
 [submodule "vim/.config/nvim"]
 	path = vim/.config/nvim
 	url = https://github.com/1wilkens/init.lua
+	branch = main
