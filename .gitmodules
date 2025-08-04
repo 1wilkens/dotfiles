@@ -7,4 +7,4 @@
 	url = https://github.com/jasperro/FlatColor
 [submodule "vim/.config/nvim"]
 	path = vim/.config/nvim
-	url = git@github.com:1wilkens/init.lua
+	url = https://github.com/1wilkens/init.lua
