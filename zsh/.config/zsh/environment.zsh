@@ -1,12 +1,5 @@
 # generic
 
-## atuin
-if has_executable "atuin"; then
-    eval "$(atuin init zsh --disable-up-arrow)"
-else
-    echo "atuin is not installed. You may want to install it.."
-fi
-
 # linux (aka non-macOS)
 if ! is_macos; then
     ## clipboard
@@ -64,3 +57,13 @@ if is_macos; then
         fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
     fi
 fi
+
+# applications (need to be last to have homebrew paths available)
+
+## atuin
+if has_executable "atuin"; then
+    eval "$(atuin init zsh --disable-up-arrow)"
+else
+    echo "atuin is not installed. You may want to install it.."
+fi
+
