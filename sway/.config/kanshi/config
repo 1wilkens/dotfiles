@@ -2,7 +2,12 @@ profile standalone {
     output eDP-1 mode 2256x1504 position 0,0 scale 1.25
 }
 
-profile home {
+profile home-reduced {
+    output eDP-1 mode 2256x1504 position 0,324 scale 1.25
+    output "Beihai Century Joint Innovation Technology Co.,Ltd M27-4K-144-C 0000000000000" mode 3840x2160@30.000Hz position 1805,0 scale 1.5
+}
+
+profile home-full {
     output eDP-1 mode 2256x1504 position 0,324 scale 1.25
     output "Beihai Century Joint Innovation Technology Co.,Ltd M27-4K-144-C 0000000000000" mode 3840x2160@30.000Hz position 1805,0 scale 1.5
     output "AOC 27G2G4 0x00010971" mode 1920x1080@60.000Hz position 4370,512 scale 1
