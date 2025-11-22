@@ -1,0 +1,17 @@
+shell = "zsh -c '{}'"
+default-scheme = "base16-atelier-dune"
+
+[[items]]
+name = "tinted-shell"
+path = "https://github.com/tinted-theming/tinted-shell"
+themes-dir = "scripts"
+hook = ". \"$TINTY_THEME_FILE_PATH\""
+supported-systems = ["base16", "base24"]
+
+[[items]]
+path = "https://github.com/tinted-theming/tinted-terminal"
+name = "tinted-terminal"
+themes-dir = "themes/alacritty"
+hook = "cp -f \"$TINTY_THEME_FILE_PATH\" ~/.config/alacritty/theme.toml && touch ~/.config/alacritty/theme.toml"
+supported-systems = ["base16", "base24"]
+

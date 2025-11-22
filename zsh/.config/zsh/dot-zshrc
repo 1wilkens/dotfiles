@@ -32,20 +32,6 @@ fi
 ### zim: initialize modules (do this last to correctly initialize completions)
 source ${ZIM_HOME}/init.zsh
 
-
-## base16-shell
-#
-### b16sh: init
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        source "$BASE16_SHELL/profile_helper.sh"
-
-## b16sh: and set theme (only available after profile_helper.sh has been sourced)
-[ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-    base16_atelier-dune
-
-
 ## precmd and preexec hooks
 autoload -Uz add-zsh-hook
 

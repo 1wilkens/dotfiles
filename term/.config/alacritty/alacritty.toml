@@ -1,6 +1,11 @@
+[general]
+import = ["~/.config/alacritty/theme.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
+
+[font]
+#size = 16
 
 [font.normal]
 family = "SauceCodePro NF"
@@ -75,8 +80,3 @@ opacity = 0.85
 [window.padding]
 x = 2
 y = 4
-
-[general]
-import = ["/home/florian/.config/alacritty/theme.toml"]
-
-[terminal]
