@@ -1,5 +1,17 @@
 shell = "zsh -c '{}'"
 default-scheme = "base16-atelier-dune"
+preferred-schemes = ["base24-one-dark"]
+
+[[items]]
+path = "https://github.com/tinted-theming/tinted-terminal"
+name = "tinted-terminal"
+themes-dir = "themes/ghostty"
+hook = """
+mkdir -p ~/.config/ghostty/themes
+command cp -f "$TINTY_THEME_FILE_PATH" ~/.config/ghostty/themes/tinted-theming
+killall -SIGUSR2 ghostty 2>/dev/null || true
+"""
+supported-systems = ["base16", "base24"]
 
 [[items]]
 name = "tinted-shell"
@@ -9,9 +21,7 @@ hook = ". \"$TINTY_THEME_FILE_PATH\""
 supported-systems = ["base16", "base24"]
 
 [[items]]
-path = "https://github.com/tinted-theming/tinted-terminal"
-name = "tinted-terminal"
-themes-dir = "themes/alacritty"
-hook = "cp -f \"$TINTY_THEME_FILE_PATH\" ~/.config/alacritty/theme.toml && touch ~/.config/alacritty/theme.toml"
+name = "tinted-nvim"
+path = "https://github.com/tinted-theming/tinted-nvim"
+themes-dir = "colors"
 supported-systems = ["base16", "base24"]
-
