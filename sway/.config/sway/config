@@ -22,7 +22,7 @@ font pango:SauceCodePro NF, Icons 8
 floating_modifier $mod
 
 # <Mod-Enter> to start alacritty
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec $HOME/bin/ghostty
 
 # <Mod-Shift-q> to force kill the window
 bindsym $mod+Shift+q kill
@@ -174,7 +174,7 @@ bindsym --locked XF86AudioPause exec playerctl play-pause
 bindsym --locked XF86AudioNext exec playerctl next
 
 # <Mod+Shift+#> sets new random wallpapers
-bindsym $mod+Shift+numbersign exec $HOME/bin/randpaper.sh
+bindsym $mod+Shift+w exec $HOME/bin/randpaper.sh
 
 # rofi menus (audio + monitor)
 bindsym $mod+F1 exec $HOME/bin/pa_switchsink

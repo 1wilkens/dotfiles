@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# systemctl --user set-environment GTK_IM_MODULE=simple
+exec env GTK_IM_MODULE=simple /usr/bin/ghostty
