@@ -67,3 +67,7 @@ else
     echo "atuin is not installed. You may want to install it.."
 fi
 
+## go: setup GOPATH
+if has_executable "go"; then
+    export GOPATH="$HOME/src/go"
+fi
