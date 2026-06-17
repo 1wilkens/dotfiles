@@ -32,6 +32,9 @@ fi
 ### zim: initialize modules (do this last to correctly initialize completions)
 source ${ZIM_HOME}/init.zsh
 
+### post-zim: stuff that needs zim initialized (such as completions)
+source $ZDOTDIR/post-zim.zsh
+
 ## precmd and preexec hooks
 autoload -Uz add-zsh-hook
 
