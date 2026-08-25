@@ -72,6 +72,8 @@ record() {
     local dir=$root/$tag
     mkdir -p "$dir" || return 1
     chmod 700 "$dir"
+    ZSH_AUTOSUGGEST_HISTORY_IGNORE='*' \
+    ZSH_AUTOSUGGEST_COMPLETION_IGNORE='*' \
     script -q "$dir/session_$(date +%Y-%m-%d_%H-%M-%S).log"
 }
 
