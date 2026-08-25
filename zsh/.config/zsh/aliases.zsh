@@ -25,6 +25,7 @@ if is_macos; then
     alias brewup='brew update && brew upgrade && brew cleanup'
 fi
 
+# generate a secure random password from /dev/urandom
 genpasswd() {
     # default length to 16 if no argument given
     local length=${1:-16}
@@ -33,7 +34,7 @@ genpasswd() {
     LC_ALL=C tr -dc 'A-Za-z0-9_' < /dev/urandom | head -c "$length" | xargs
 }
 
-# Generate a resident FIDO2 (-sk) SSH key tagged ssh:<arg>, saved to ~/.ssh/id_yk_<arg>
+# generate a resident FIDO2 (-sk) SSH key tagged ssh:<arg>, saved to ~/.ssh/id_yk_<arg>
 yk-newkey() {
     emulate -L zsh
     local tag=$1
@@ -52,3 +53,32 @@ yk-newkey() {
     fi
     ssh-keygen -t ed25519-sk -O resident -O application=ssh:$tag -C "yk-$tag" -f $out
 }
+
+# record a terminal session with an optional tag
+record() {
+    local tag=${1:-default}
+    if [[ ! $tag =~ '^[A-Za-z0-9_][A-Za-z0-9._-]*$' ]]; then
+      print -u2 "record: invalid tag '$tag'"
+      return 1
+    fi
+
+    local root
+    if is_macos; then
+      root=~/Documents/recordings
+    else
+      root=~/recordings
+    fi
+
+    local dir=$root/$tag
+    mkdir -p "$dir" || return 1
+    chmod 700 "$dir"
+    script -q "$dir/session_$(date +%Y-%m-%d_%H-%M-%S).log"
+}
+
+_record() {
+  local root
+  if is_macos; then root=~/Documents/recordings; else root=~/recordings; fi
+  _files -W "$root" -/
+}
+
+(( $+functions[compdef] )) && compdef _record record
